@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "My First Day",
+      "content": "This is my first post..."
+    },
+    {
+      "id": 2,
+      "title": "Clean Code is Love",
+      "content": "Seriously, it is."
+    },
+    {
+      "id": 3,
+      "title": "From the Database!",
+      "content": "This came from a file!"
+    },
+    {
+      "id": 4,
+      "title": "Test Post",
+      "content": "This is a test post."
+    },
+    {
+      "id": 5,
+      "title": "Validated Title",
+      "content": "Validated content"
+    },
+    {
+      "id": 6,
+      "title": "My Postman Test",
+      "content": "This data came from an API client!"
+    }
+  ]
+}
