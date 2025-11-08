@@ -41,10 +41,8 @@ function getPosts(req, res) {
         // This function is now "safe" and will never throw an error
         // that crashes our controller.
         const data = readDatabase();
-        const posts = data.posts || []; // Default to empty array just in case
-        
-        // Set header and send response
-        res.writeHead(200, { 'Content-Type': 'application/json' });
+        const posts = data.posts || []; // Default to empty array just in case        // Set header and send response (include CORS so browser clients can call this API)
+        res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
         res.end(JSON.stringify(posts));
 
     } catch (error) {
@@ -73,8 +71,8 @@ function createPost(req, res) {
             // Validation: ensure title and content are present and non-empty strings
             if (!newPostData || typeof newPostData.title !== 'string' || newPostData.title.trim() === '' || typeof newPostData.content !== 'string' || newPostData.content.trim() === '') {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify({ error: 'Invalid request: title and content are required and must be non-empty strings.' }));
-                return;
+                    //send a response back to the client (include CORS header)
+                    res.writeHead(201, {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'});
             }
 
             // --- THIS IS THE NEW DATABASE LOGIC ---
@@ -120,7 +118,8 @@ function createPost(req, res) {
 /*controller 3 : handling homepage */
 function getHomepage(req,res) {
     //setting the content header of the response
-    res.writeHead(200, {'Content-Type': 'text/plain'});
+        //setting the content header of the response (include CORS header)
+        res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
     //writing the body response from the header of the GET request
     res.write('welcome to the Homepage!!!');
     //ending the response
@@ -130,7 +129,8 @@ function getHomepage(req,res) {
 /*controller 4 : handling 404 Not Found */
 function handleNotFound(req, res) {
     //setting the content header of the response
-    res.writeHead(404, {'Content-Type': 'text/plain'});
+        //setting the content header of the response (include CORS header)
+        res.writeHead(404, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'});
     //writing the body response from the header of the GET request
     res.write('404 Not Found');
     //ending the response
